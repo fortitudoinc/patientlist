@@ -1,6 +1,7 @@
 Module: patientList
 
 Privilege needed to run module: "App: patient list"
+
 Privilege needed to view reports: "App: patient report"
 
 The admin must create three roles:
