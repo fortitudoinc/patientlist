@@ -4,6 +4,8 @@ Privilege needed to run module: "App: patient list"
 
 Privilege needed to view reports: "App: patient report"
 
+See Global Privilges below (step 3)
+
 The admin must create three roles:
 
 1. A clerk role: the clerk will be responsible for adding patients
