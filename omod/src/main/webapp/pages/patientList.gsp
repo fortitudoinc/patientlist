@@ -44,10 +44,6 @@ jq(function() {
             "bJQueryUI": true
         });
 
-        if ("$role" === "clerk") {
-            document.getElementById("patientMessageList").style.display = "none";
-        }
-
         if ("$role" === "dr") {
             document.getElementById("oldPatientMessageList").style.display = "none";
         }
