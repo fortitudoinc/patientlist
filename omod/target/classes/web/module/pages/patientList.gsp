@@ -24,6 +24,8 @@ ui.includeCss("uicommons", "datatables/dataTables_jui.css")
 jq=jQuery;
 jq(function() { 
 
+    document.getElementById('redirectURL').value = OPENMRS_CONTEXT_PATH + "/patientlist/patientList.page";
+
      jq('#activeTable').dataTable({
             "aaSorting": [],
             "sPaginationType": "full_numbers",
@@ -51,6 +53,7 @@ jq(function() {
 </script>
 
 <script>
+
     function addToCallAttempts(id) {
         document.getElementById('itemId').value = id;
         document.getElementById('postType').value = "addToCount";
@@ -155,6 +158,7 @@ jq(function() {
 <input id="postType" type="hidden" name="postType">
 <input id="patId" type="hidden" name="patientId" value="0">
 <input id="itemId" type="hidden" name="itemId" value="0">
+<input id="redirectURL" type="hidden" name="redirectUrl">
 </form>
 </div>
 

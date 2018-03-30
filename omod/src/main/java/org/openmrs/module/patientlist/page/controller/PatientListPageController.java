@@ -118,6 +118,7 @@ public class PatientListPageController {
 	public String post(HttpSession session, HttpServletRequest request,
 	        @RequestParam(value = "patientId", required = false) int patientId,
 	        @RequestParam(value = "itemId", required = false) int itemId,
+	        @RequestParam(value = "redirectUrl", required = false) String redirectUrl,
 	        @RequestParam(value = "postType", required = false) String postType) {
 		System.out.println("POST ------------ patiend id: " + patientId);
 		
@@ -145,14 +146,7 @@ public class PatientListPageController {
 		patientListItem = Context.getService(PatientListItemService.class).savePatientListItem(patientListItem);
 		InfoErrorMessageUtil.flashInfoMessage(session, "Patient List Updated");
 		
-		String url = (request.getRequestURL().toString()).trim();
-		
-		// url in redirect does not want, e.g. "http://localhost:8081/"
-		
-		url = url.substring(url.indexOf("//") + 2);
-		url = url.substring(url.indexOf("/") + 1);
-		System.out.println("POST, URL: " + url);
-		return "redirect:" + url;
+		return "redirect:" + redirectUrl;
 	}
 	
 	/*        
