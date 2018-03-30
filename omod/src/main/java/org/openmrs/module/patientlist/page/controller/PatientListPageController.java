@@ -86,7 +86,7 @@ public class PatientListPageController {
 		Note, when a clerk wishes to add an old patient to the active list she/he must
 		be sure the patient has not already been added to the active list; therefore,
 		we need to get the active list so the view can do the check
-		*/
+		 */
 		System.out.println("CHANGE IS MADE");
 		activeItems = Context.getService(PatientListItemService.class).getActivePatientListItems();
 		for (PatientListItem item : activeItems) {
@@ -115,7 +115,8 @@ public class PatientListPageController {
 	}
 	}
 	 */
-	public String post(HttpSession session, @RequestParam(value = "patientId", required = false) int patientId,
+	public String post(HttpSession session, HttpServletRequest request,
+	        @RequestParam(value = "patientId", required = false) int patientId,
 	        @RequestParam(value = "itemId", required = false) int itemId,
 	        @RequestParam(value = "postType", required = false) String postType) {
 		System.out.println("POST ------------ patiend id: " + patientId);
@@ -143,7 +144,15 @@ public class PatientListPageController {
 		
 		patientListItem = Context.getService(PatientListItemService.class).savePatientListItem(patientListItem);
 		InfoErrorMessageUtil.flashInfoMessage(session, "Patient List Updated");
-		return "redirect:" + "openmrs-standalone/patientlist/patientList.page";
+		
+		String url = (request.getRequestURL().toString()).trim();
+		
+		// url in redirect does not want, e.g. "http://localhost:8081/"
+		
+		url = url.substring(url.indexOf("//") + 2);
+		url = url.substring(url.indexOf("/") + 1);
+		System.out.println("POST, URL: " + url);
+		return "redirect:" + url;
 	}
 	
 	/*        
