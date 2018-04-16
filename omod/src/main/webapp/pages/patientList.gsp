@@ -25,7 +25,7 @@ jq=jQuery;
 jq(function() { 
 
     document.getElementById('redirectURL').value = OPENMRS_CONTEXT_PATH + "/patientlist/patientList.page";
-
+var x = OPENMRS_CONTEXT_PATH + "/patientlist/patientList.page";
      jq('#activeTable').dataTable({
             "aaSorting": [],
             "sPaginationType": "full_numbers",
@@ -82,10 +82,16 @@ jq(function() {
 <thead>
   <tr>
  <!--        <th>Patient Id</th>   -->
-<th>Call No Answer</th>
+
+    <% if (role.equals("dr")) { %>
+        <th>Call No Answer</th>
+    <% } %>
+
 <th>Patient Name</th><th>Contact Attempts</th> <th>Patient Call Date</th>
-        <th>Last Contact Attempt Date</th><th>tel</th><th>Dashboard</th>
-        
+        <th>Last Contact Attempt Date</th><th>tel</th>
+        <% if (role.equals("dr")) { %>
+               <th>Dashboard</th>
+        <% } %>
   </tr>
 </thead>
 <tbody >
@@ -93,14 +99,22 @@ jq(function() {
      <% activePatientListItems.each { %>
       <tr>
 <!-- <td>${ ui.format(it.id)}</td>  -->
-<td onclick="addToCallAttempts($it.id)"> <i  class="icon-">&#xf0fe;</i></td>
+
+    <% if (role.equals("dr")) { %>
+        <td onclick="addToCallAttempts($it.id)"> <i  class="icon-">&#xf0fe;</i></td>
+    <% } %>
+
 <td>${ ui.format(it.patientName)}</td>
 <td>${ ui.format(it.contactAttempts)}</td>
 <td>${ ui.format(it.patientCallDate)}</td>
 <td>${ ui.format(it.lastContactAttemptDate)}</td>
 <td>${ ui.format(it.patientPhone)}</td>
-<td><a href=$url$it.patientId>dashboard</a>
 
+    <% if (role.equals("dr")) { %>
+        <td>
+        <a href=$url$it.patientId>dashboard</a>
+        </td>
+    <% } %>
       </tr>
     <% } %>
   <% } else { %>
@@ -156,7 +170,7 @@ jq(function() {
 </table>
 
 <input id="postType" type="hidden" name="postType">
-<input id="patId" type="hidden" name="patientId" value="0">
+<input id="patId" type="hidden" name="patientIdd" value="0">
 <input id="itemId" type="hidden" name="itemId" value="0">
 <input id="redirectURL" type="hidden" name="redirectUrl">
 </form>

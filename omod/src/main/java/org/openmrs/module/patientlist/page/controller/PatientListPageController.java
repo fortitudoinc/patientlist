@@ -36,7 +36,10 @@ public class PatientListPageController {
 		System.out.println("*******PatientListPageController");
 		
 		String url = (request.getRequestURL().toString()).trim();
-		int i = url.lastIndexOf("/");
+		int i = url.indexOf("coreapps");
+		if (i < 0) {
+			i = url.indexOf("patientlist");
+		}
 		url = url.substring(0, i);
 		i = url.lastIndexOf("/");
 		url = url.substring(0, i);
@@ -80,6 +83,13 @@ public class PatientListPageController {
 					return o1.getPatientCallDate().compareTo(o2.getPatientCallDate());
 				}
 			});
+			if (userRole.equals(clerk)) {
+				userRole = "clerk";
+			} else {
+				userRole = "admin";
+			}
+		} else {
+			userRole = "dr";
 		}
 		
 		/*
@@ -87,7 +97,6 @@ public class PatientListPageController {
 		be sure the patient has not already been added to the active list; therefore,
 		we need to get the active list so the view can do the check
 		 */
-		System.out.println("CHANGE IS MADE");
 		activeItems = Context.getService(PatientListItemService.class).getActivePatientListItems();
 		for (PatientListItem item : activeItems) {
 			activePatientListItems.add(new PatientListItemLocal(item));
@@ -116,7 +125,7 @@ public class PatientListPageController {
 	}
 	 */
 	public String post(HttpSession session, HttpServletRequest request,
-	        @RequestParam(value = "patientId", required = false) int patientId,
+	        @RequestParam(value = "patientIdd", required = false) int patientId,
 	        @RequestParam(value = "itemId", required = false) int itemId,
 	        @RequestParam(value = "redirectUrl", required = false) String redirectUrl,
 	        @RequestParam(value = "postType", required = false) String postType) {

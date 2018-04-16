@@ -33,7 +33,8 @@ public class PatientAfterEndVisitAdvice implements AfterReturningAdvice {
 		Visit visit = (Visit) args[0];
 		Patient patient = visit.getPatient();
 		User user = Context.getAuthenticatedUser();
-		System.out.println("*********ENDING VISIT REMOVE FROM LIST: " + patient.getFamilyName());
+		System.out.println("*********ENDING VISIT REMOVE FROM LIST: " + patient.getFamilyName() + " Patient Id: "
+		        + patient.getPatientId());
 		log.debug("Method: " + method.getName() + ". After advice called ");
 		
 		int patientId = patient.getPatientId();
@@ -47,8 +48,7 @@ public class PatientAfterEndVisitAdvice implements AfterReturningAdvice {
 		}
 		patientListItem = items.get(0);
 		
-		System.out.println("*********ENDING VISIT REMOVE FROM LIST: " + patient.getFamilyName() + "  item id: "
-		        + patientListItem.getId());
+		System.out.println("*********ENDING VISIT REMOVE FROM LIST item id: " + patientListItem.getId());
 		patientListItem.setLastContactAttemptDate(new Date());
 		patientListItem.setHasBeenCalled(1);
 		patientListItem.setDrPersonId(user.getPerson().getPersonId());
