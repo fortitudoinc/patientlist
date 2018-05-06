@@ -31,8 +31,8 @@ public class PatientAfterSaveAdvice implements AfterReturningAdvice {
 		PatientListItem patientListItem = new PatientListItem();
 		
 		patientListItem.setPatientCallDate(new Date());
-		//patientListItem.setLastContactAttemptDate(new Date());
-		patientListItem.setLastContactAttemptDate(null);
+		patientListItem.setLastContactAttemptDate(new Date());
+		//patientListItem.setLastContactAttemptDate(null);
 		patientListItem.setContactAttempts(0);
 		patientListItem.setHasBeenCalled(0);
 		patientListItem.setVoidedReason("not voidedd");

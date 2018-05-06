@@ -9,6 +9,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.openmrs.api.db.hibernate.DbSessionFactory;
 import org.openmrs.module.patientlist.PatientListItem;
 import org.openmrs.module.patientlist.api.db.PatientListItemDao;
 
@@ -17,7 +18,7 @@ import org.openmrs.module.patientlist.api.db.PatientListItemDao;
  */
 public class HibernatePatientListItemDAO implements PatientListItemDao {
 	
-	private SessionFactory sessionFactory;
+	private DbSessionFactory sessionFactory;
 	
 	/**
 	 * This is a Hibernate object. It gives us metadata about the currently connected database, the
@@ -30,7 +31,7 @@ public class HibernatePatientListItemDAO implements PatientListItemDao {
 	 * 
 	 * @param sessionFactory
 	 */
-	public void setSessionFactory(SessionFactory sessionFactory) {
+	public void setSessionFactory(DbSessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 	

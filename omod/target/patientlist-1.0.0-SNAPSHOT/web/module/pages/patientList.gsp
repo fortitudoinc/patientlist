@@ -101,7 +101,8 @@ var x = OPENMRS_CONTEXT_PATH + "/patientlist/patientList.page";
 <!-- <td>${ ui.format(it.id)}</td>  -->
 
     <% if (role.equals("dr")) { %>
-        <td onclick="addToCallAttempts($it.id)"> <i  class="icon-">&#xf0fe;</i></td>
+        
+        <td style="cursor:pointer" onclick="addToCallAttempts($it.id)"> <i  class="icon-">&#xf0fe;</i></td>
     <% } %>
 
 <td>${ ui.format(it.patientName)}</td>
@@ -150,7 +151,7 @@ var x = OPENMRS_CONTEXT_PATH + "/patientlist/patientList.page";
   <% if (oldPatientListItems) { %>
      <% oldPatientListItems.each { %>
       <tr>
-<td onclick="addToList($it.patientId)"> <i  class="icon-">&#xf0fe;</i></td>
+<td style="cursor:pointer" onclick="addToList($it.patientId)"> <i  class="icon-">&#xf0fe;</i></td>
 <td>${ ui.format(it.patientName)}</td>
 <td>${ ui.format(it.patientCallDate)}</td>
 <td>${ ui.format(it.lastContactAttemptDate)}</td>
